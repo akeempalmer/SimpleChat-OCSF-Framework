@@ -39,8 +39,7 @@ public class ChatServer extends AbstractServer {
 
         switch(command) {
             case "quit":
-                System.out.println("Quiting the system please wait...");
-                server.close();
+                quit();
                 break;
             case "stop":
                 server.stopListening();
@@ -62,6 +61,17 @@ public class ChatServer extends AbstractServer {
                 break;
 
         }
+    }
+
+
+    public void quit() {
+        try {
+            System.out.println("Quiting the system please wait...");
+            server.close();
+        } catch (IOException var2) {
+        }
+
+        System.exit(0);
     }
 
     @Override
