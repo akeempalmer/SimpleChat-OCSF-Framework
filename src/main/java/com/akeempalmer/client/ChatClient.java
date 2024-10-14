@@ -100,6 +100,8 @@ public class ChatClient extends AbstractClient {
                     login();
                     break;
                 case "gethost":
+                    String host = getHost();
+                    System.out.println("Connected to host: " + host);
                     break;
                 case "getport":
                     break;

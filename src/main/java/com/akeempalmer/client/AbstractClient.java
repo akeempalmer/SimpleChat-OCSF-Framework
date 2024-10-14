@@ -342,7 +342,6 @@ public abstract class AbstractClient implements Runnable {
 				input = null;
 			}
 
-
 		} catch (IOException error) {
 			System.out.println("An error occurred when logging out " + error);
 
@@ -351,7 +350,7 @@ public abstract class AbstractClient implements Runnable {
 
 
 	/**
-	 * Handles connecting to the client from the UI.
+	 * Handles connecting to the server from the Client UI.
 	 *
 	 */
 	protected void login() throws IOException {
