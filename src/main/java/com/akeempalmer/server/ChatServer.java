@@ -45,6 +45,9 @@ public class ChatServer extends AbstractServer {
             case "stop":
                 server.stopListening();
                 break;
+            case "close":
+                server.close();
+                break;
             default:
                 System.out.println("Invalid command entered.");
                 break;
