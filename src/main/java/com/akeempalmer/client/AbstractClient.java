@@ -191,6 +191,7 @@ public abstract class AbstractClient implements Runnable {
 	 *             the port number.
 	 */
 	final public void setPort(int port) {
+
 		this.port = port;
 	}
 
@@ -283,7 +284,7 @@ public abstract class AbstractClient implements Runnable {
 	 */
 	protected void connectionException(Exception exception) {
 	System.out.println("Lost connection to the server.");
-	quit();
+//	quit();
 	}
 
 	/**
@@ -302,6 +303,35 @@ public abstract class AbstractClient implements Runnable {
 	 *            the message sent.
 	 */
 	protected abstract void handleMessageFromServer(Object msg);
+
+	/**
+	 * Handles logging off the client from the server
+	 */
+	protected void logout() throws IOException{
+		try {
+			if (input != null && clientSocket != null){
+				System.out.println("Logging off from Server");
+			} else {
+				System.out.println("Already logged off from Server");
+				return;
+			}
+
+			if (clientSocket != null) {
+				clientSocket.close();
+				clientSocket = null;
+			}
+
+			// Close the input stream
+			if (input != null) {
+				input.close();
+				input = null;
+			}
+
+		} catch (IOException error) {
+			System.out.println("An error occurred when logging out " + error);
+
+		}
+	}
 
 	// METHODS TO BE USED FROM WITHIN THE FRAMEWORK ONLY ----------------
 

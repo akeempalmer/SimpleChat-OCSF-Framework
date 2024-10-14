@@ -82,6 +82,7 @@ public class ChatClient extends AbstractClient {
                     quit();
                     break;
                 case "logoff":
+                    this.logout();
                     break;
                 case "sethost":
                     break;
