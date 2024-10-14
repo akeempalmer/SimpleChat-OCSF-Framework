@@ -104,6 +104,8 @@ public class ChatClient extends AbstractClient {
                     System.out.println("Connected to host: " + host);
                     break;
                 case "getport":
+                    int port = getPort();
+                    System.out.printf("Connected on port: %d", port);
                     break;
                 default:
                     System.out.println("Invalid command entered.");
