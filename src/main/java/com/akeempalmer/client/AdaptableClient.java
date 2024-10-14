@@ -48,7 +48,6 @@ class AdaptableClient extends AbstractClient {
    */
   final protected void connectionClosed() {
   client.connectionClosed();
-
   }
 
   /**

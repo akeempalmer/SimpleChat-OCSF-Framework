@@ -73,9 +73,15 @@ public class ChatClient extends AbstractClient {
     }
 
     public void handleCommandsFromClientUI(String message) throws IOException {
-            String command = message.replaceFirst("#", "");
+            String cleansedMessage = message.replaceFirst("#", "");
 
-            System.out.println(command);
+            String[] commandArgMessage = cleansedMessage.split(" ");
+            String command = commandArgMessage[0];
+            String commandArg = "";
+
+            if (commandArgMessage.length > 1)
+                commandArg = commandArgMessage[1];
+
             switch(command) {
                 case "quit":
                     System.out.println("Quiting the system please wait...");
@@ -85,6 +91,7 @@ public class ChatClient extends AbstractClient {
                     this.logout();
                     break;
                 case "sethost":
+                    setHost(commandArg);
                     break;
                 case "setport":
                     break;

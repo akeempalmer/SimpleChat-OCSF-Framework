@@ -191,7 +191,6 @@ public abstract class AbstractClient implements Runnable {
 	 *             the port number.
 	 */
 	final public void setPort(int port) {
-
 		this.port = port;
 	}
 
@@ -210,6 +209,11 @@ public abstract class AbstractClient implements Runnable {
 	 *             the host name.
 	 */
 	final public void setHost(String host) {
+		if (this.isConnected()) {
+			System.out.println("Client must be logged off to set the host.");
+			return;
+		}
+
 		this.host = host;
 	}
 
