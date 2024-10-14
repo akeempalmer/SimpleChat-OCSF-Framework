@@ -5,6 +5,8 @@ package com.akeempalmer;
 // license found at www.lloseng.com 
 
 import java.io.*;
+import java.util.Arrays;
+
 import com.akeempalmer.server.*;
 
 /**
@@ -63,6 +65,39 @@ public class EchoServer extends AbstractServer {
      */
     protected void serverStopped() {
         System.out.println("Server has stopped listening for connections.");
+    }
+
+    /**
+     * This method overrides the one in the superclass. Called when a client
+     * connects to the server.
+     * @param client the connection connected to the client.
+     */
+    protected void clientConnected(ConnectionToClient client) {
+        String host = client.toString();
+        System.out.printf("A new client has connected to the server from %s\n", host);
+    }
+
+    /**
+     * This method overrides the one in the superclass. Called when
+     * the socket is no longer listening to the client. (EOF)
+     * @param client    the client that raised the exception.
+     * @param exception
+     */
+    protected synchronized void clientException(
+            ConnectionToClient client, Throwable exception) {
+
+        if (exception instanceof EOFException) {
+            clientDisconnected(client);
+        }
+    }
+
+    /**
+     * This method overrides the one in the superclass. Called when a client
+     * disconnects from the server.
+     * @param client the connection connected to the client.
+     */
+    protected synchronized void clientDisconnected(ConnectionToClient client) {
+        System.out.println("A client has disconnected from the server.");
     }
 
     // Class methods ***************************************************

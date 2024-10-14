@@ -333,7 +333,7 @@ public abstract class AbstractServer implements Runnable {
      *
      * @param client the connection with the client.
      */
-    synchronized protected void clientDisconnected(
+    protected synchronized  void clientDisconnected(
             ConnectionToClient client) {
     }
 

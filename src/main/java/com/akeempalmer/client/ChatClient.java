@@ -111,8 +111,6 @@ public class ChatClient extends AbstractClient {
                     System.out.println("Invalid command entered.");
                         break;
             }
-
-
     }
 
     /**
