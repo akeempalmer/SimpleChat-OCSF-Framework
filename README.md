@@ -43,11 +43,15 @@
    the string SERVER msg>).
 3. • In a similar manner to the way you implemented commands on the client side,
    add a mechanism so that the user of the server can type commands that perform
-   special functions. 
-   - #quit cause the server to terminate gracefully. 
-   - #stop causes the server to stop listening for new clients. 
-   - #close causes the server not only to stop listening for new clients, but also to disconnect all existing clients. 
+   special functions.
+   - #quit cause the server to terminate gracefully.
+   - #stop causes the server to stop listening for new clients.
+   - #close causes the server not only to stop listening for new clients, but also to disconnect all existing clients.
    - #setport <port> calls the setPort method in the server. Only allowed
-   if the server is closed. 
-   - #start causes the server starts to listening for new clients. Only valid if the server is stopped. 
+     if the server is closed.
+   - #start causes the server starts to listening for new clients. Only valid if the server is stopped.
    - #getport displays the current port number.
+
+## Phase 1 Results
+
+![Screenshot of results](./Phase1-Results.png)
