@@ -54,6 +54,9 @@ public class ChatServer extends AbstractServer {
             case "start":
                 server.listen();
                 break;
+            case "getport":
+                System.out.printf("The server is listening on port %s\n", server.getPort());
+                break;
             default:
                 System.out.println("Invalid command entered.");
                 break;
