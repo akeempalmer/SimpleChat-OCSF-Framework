@@ -47,7 +47,8 @@ class AdaptableClient extends AbstractClient {
    * Hook method called after the connection has been closed.
    */
   final protected void connectionClosed() {
-    client.connectionClosed();
+  client.connectionClosed();
+
   }
 
   /**
@@ -57,14 +58,14 @@ class AdaptableClient extends AbstractClient {
    * @param exception the exception raised.
    */
   final protected void connectionException(Exception exception) {
-    client.connectionException(exception);
+  client.connectionException(exception);
   }
 
   /**
    * Hook method called after a connection has been established.
    */
   final protected void connectionEstablished() {
-    client.connectionEstablished();
+   client.connectionEstablished();
   }
 
   /**
@@ -75,4 +76,8 @@ class AdaptableClient extends AbstractClient {
   final protected void handleMessageFromServer(Object msg) {
     client.handleMessageFromServer(msg);
   }
+
+
+
 }
+

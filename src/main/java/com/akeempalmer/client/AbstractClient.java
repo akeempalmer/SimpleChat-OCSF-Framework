@@ -237,6 +237,7 @@ public abstract class AbstractClient implements Runnable {
 
 		try {
 			while (!readyToStop) {
+
 				// Get data from Server and send it to the handler
 				// The thread waits indefinitely at the following
 				// statement until something is received from the server
@@ -269,6 +270,7 @@ public abstract class AbstractClient implements Runnable {
 	 * attempting to reconnect.
 	 */
 	protected void connectionClosed() {
+		System.out.println("The connection to the server has been closed. Quitting...");
 	}
 
 	/**
@@ -280,6 +282,8 @@ public abstract class AbstractClient implements Runnable {
 	 *                  the exception raised.
 	 */
 	protected void connectionException(Exception exception) {
+	System.out.println("Lost connection to the server.");
+	quit();
 	}
 
 	/**
@@ -330,5 +334,16 @@ public abstract class AbstractClient implements Runnable {
 			clientSocket = null;
 		}
 	}
+
+	private void quit() {
+		try {
+			closeConnection();  // Ensure the connection is closed properly
+		} catch (IOException e) {
+			System.err.println("Error closing connection: " + e.getMessage());
+		}
+		System.exit(0);  // Exit the client
+	}
+
+
 }
 // end of AbstractClient class

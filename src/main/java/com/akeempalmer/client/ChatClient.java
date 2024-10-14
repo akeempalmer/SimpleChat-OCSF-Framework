@@ -41,6 +41,10 @@ public class ChatClient extends AbstractClient {
         this.clientUI = clientUI;
         openConnection();
     }
+//
+//    if (!client.isConnected()) {
+//        client.closeConnection();
+//    }
 
     // Instance methods ************************************************
 
@@ -77,5 +81,6 @@ public class ChatClient extends AbstractClient {
         }
         System.exit(0);
     }
+
 }
 // End of ChatClient class
