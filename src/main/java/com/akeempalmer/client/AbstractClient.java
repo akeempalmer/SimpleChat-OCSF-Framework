@@ -113,6 +113,7 @@ public abstract class AbstractClient implements Runnable {
 			try {
 				closeAll();
 			} catch (Exception exc) {
+				throw ex;
 			}
 
 			throw ex; // Rethrow the exception.
@@ -341,10 +342,40 @@ public abstract class AbstractClient implements Runnable {
 				input = null;
 			}
 
+
 		} catch (IOException error) {
 			System.out.println("An error occurred when logging out " + error);
 
 		}
+	}
+
+
+	/**
+	 * Handles connecting to the client from the UI.
+	 *
+	 */
+	protected void login() throws IOException {
+		try {
+			if (isConnected()) {
+				System.out.println("Client is already connected to the server");
+				return;
+			}
+			if (host == null) {
+				System.out.println("Host address needed to connect to the server.");
+				return;
+			}
+
+			if (port <= 0) {
+				System.out.println("Port needed to connect to the server.");
+				return;
+			}
+
+			openConnection();
+			System.out.println("Connected to the Server");
+		} catch (IOException error) {
+			System.err.println("An error occurred trying to login: " + error);
+		}
+
 	}
 
 	// METHODS TO BE USED FROM WITHIN THE FRAMEWORK ONLY ----------------

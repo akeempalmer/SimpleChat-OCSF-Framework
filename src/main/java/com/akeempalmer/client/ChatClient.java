@@ -97,6 +97,7 @@ public class ChatClient extends AbstractClient {
                     setPort(Integer.parseInt(commandArg));
                     break;
                 case "login":
+                    login();
                     break;
                 case "gethost":
                     break;
