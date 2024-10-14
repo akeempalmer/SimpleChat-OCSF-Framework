@@ -141,6 +141,8 @@ public abstract class AbstractServer implements Runnable {
      *                        closing the server socket.
      */
     final synchronized public void close() throws IOException {
+        System.out.println(serverSocket);
+
         if (serverSocket == null)
             return;
         stopListening();

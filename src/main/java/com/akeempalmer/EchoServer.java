@@ -112,7 +112,6 @@ public class EchoServer extends AbstractServer implements ChatIF {
     }
 
     // Class methods ***************************************************
-
     /**
      * This method is responsible for the creation of
      * the server instance (there is no UI in this phase).
@@ -153,8 +152,12 @@ public class EchoServer extends AbstractServer implements ChatIF {
             while (true) {
                 message = fromConsole.readLine();
 
-                // Broadcast the message to all the connected clients
-                display(message);
+                if (message.charAt(0) != '#') {
+                    // Broadcast the message to all the connected clients
+                    display(message);
+                } else {
+                    server.handleCommandsFromServerUI(message);
+                }
             }
         } catch (Exception ex) {
             System.out.println("Unexpected error while reading from console!");
