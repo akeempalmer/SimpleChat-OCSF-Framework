@@ -283,8 +283,14 @@ public abstract class AbstractClient implements Runnable {
 	 *                  the exception raised.
 	 */
 	protected void connectionException(Exception exception) {
-	System.out.println("Lost connection to the server.");
-//	quit();
+		System.out.println("Lost connection to the server.");
+		if (exception instanceof EOFException) {
+			quit();
+		}
+		if (exception instanceof SocketException) {
+			return;
+		}
+
 	}
 
 	/**
