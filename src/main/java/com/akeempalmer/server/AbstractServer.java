@@ -243,7 +243,13 @@ public abstract class AbstractServer implements Runnable {
      * @param port the port number.
      */
     final public void setPort(int port) {
+        if (serverSocket != null) {
+            System.out.println("Server must be closed to set the port.");
+            return;
+        }
+
         this.port = port;
+        System.out.println("Server port changed to: " + port);
     }
 
     /**
