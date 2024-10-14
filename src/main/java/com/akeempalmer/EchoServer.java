@@ -7,6 +7,8 @@ package com.akeempalmer;
 import java.io.*;
 import java.util.Arrays;
 
+import com.akeempalmer.client.ChatClient;
+import com.akeempalmer.common.ChatIF;
 import com.akeempalmer.server.*;
 
 /**
@@ -19,13 +21,15 @@ import com.akeempalmer.server.*;
  * @author Paul Holden
  * @version July 2000
  */
-public class EchoServer extends AbstractServer {
+public class EchoServer extends AbstractServer implements ChatIF {
     // Class variables *************************************************
 
     /**
      * The default port to listen on.
      */
     final public static int DEFAULT_PORT = 5555;
+
+    ChatServer server;
 
     // Constructors ****************************************************
 
@@ -36,6 +40,13 @@ public class EchoServer extends AbstractServer {
      */
     public EchoServer(int port) {
         super(port);
+        try {
+            server = new ChatServer(port, this);
+        } catch (IOException exception) {
+            System.out.println("Error: Can't setup connection!"
+                    + " Terminating client.");
+            System.exit(1);
+        }
     }
 
     // Instance methods ************************************************
@@ -122,9 +133,38 @@ public class EchoServer extends AbstractServer {
 
         try {
             sv.listen(); // Start listening for connections
+            Thread.sleep(2 * 1000);
+            sv.accept();
+
         } catch (Exception ex) {
             System.out.println("ERROR - Could not listen for clients!");
         }
+    }
+
+    /**
+     * This method waits for input from the console. Once it is
+     * received, it sends it to the client's message handler.
+     */
+    public void accept() {
+        try {
+            BufferedReader fromConsole = new BufferedReader(new InputStreamReader(System.in));
+            String message;
+
+            while (true) {
+                message = fromConsole.readLine();
+
+                // Broadcast the message to all the connected clients
+                display(message);
+            }
+        } catch (Exception ex) {
+            System.out.println("Unexpected error while reading from console!");
+        }
+    }
+
+    @Override
+    public void display(String message) {
+        this.sendToAllClients("SERVER msg> " + message);
+        System.out.println("SERVER msg> " + message);
     }
 }
 // End of EchoServer class
