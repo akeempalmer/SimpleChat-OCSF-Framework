@@ -51,6 +51,9 @@ public class ChatServer extends AbstractServer {
             case "setport":
                 server.setPort(Integer.parseInt(commandArg));
                 break;
+            case "start":
+                server.listen();
+                break;
             default:
                 System.out.println("Invalid command entered.");
                 break;
