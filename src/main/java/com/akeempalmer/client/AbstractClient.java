@@ -270,7 +270,7 @@ public abstract class AbstractClient implements Runnable {
 	 * attempting to reconnect.
 	 */
 	protected void connectionClosed() {
-		System.out.println("The connection to the server has been closed. Quitting...");
+		System.out.println("The connection to the server has been closed. Exiting...");
 	}
 
 	/**

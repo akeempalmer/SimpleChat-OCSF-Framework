@@ -60,11 +60,45 @@ public class ChatClient extends AbstractClient {
      */
     public void handleMessageFromClientUI(String message) {
         try {
-            sendToServer(message);
+            String commandMessage = message.trim();
+            if (commandMessage.charAt(0) == '#') {
+                handleCommandsFromClientUI(message);
+            } else {
+                sendToServer(message);
+            }
         } catch (IOException e) {
             clientUI.display("Could not send message to server.  Terminating client.");
             quit();
         }
+    }
+
+    public void handleCommandsFromClientUI(String message) throws IOException {
+            String command = message.replaceFirst("#", "");
+
+            System.out.println(command);
+            switch(command) {
+                case "quit":
+                    System.out.println("Quiting the system please wait...");
+                    quit();
+                    break;
+                case "logoff":
+                    break;
+                case "sethost":
+                    break;
+                case "setport":
+                    break;
+                case "login":
+                    break;
+                case "gethost":
+                    break;
+                case "getport":
+                    break;
+                default:
+                    System.out.println("Invalid command entered.");
+                        break;
+            }
+
+
     }
 
     /**
