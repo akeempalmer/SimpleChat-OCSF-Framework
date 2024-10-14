@@ -191,6 +191,10 @@ public abstract class AbstractClient implements Runnable {
 	 *             the port number.
 	 */
 	final public void setPort(int port) {
+		if (this.isConnected()) {
+			System.out.println("Client must be logged off to set the port.");
+			return;
+		}
 		this.port = port;
 	}
 
