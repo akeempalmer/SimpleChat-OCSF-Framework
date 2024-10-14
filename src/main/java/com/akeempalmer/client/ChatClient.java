@@ -41,10 +41,6 @@ public class ChatClient extends AbstractClient {
         this.clientUI = clientUI;
         openConnection();
     }
-//
-//    if (!client.isConnected()) {
-//        client.closeConnection();
-//    }
 
     // Instance methods ************************************************
 
