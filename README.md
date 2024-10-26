@@ -33,7 +33,6 @@
    Modify the server so that it prints out a nice message whenever a client
    connects or disconnects. (write code in EchoServer that overrides certain
    methods found in AbstractServer).
-   2
 2. Currently, the server does not allow any user input. Study the way user
    input in obtained from the client, using the ClientConsole class, which
    implements the ChatIF interface. Create an analogous mechanism on the
@@ -52,6 +51,40 @@
    - #start causes the server starts to listening for new clients. Only valid if the server is stopped.
    - #getport displays the current port number.
 
-## Phase 1 Results
+### Phase 1 Results
 
 ![Screenshot of results](./Phase1-Results.png)
+
+### Tasks - Phase 2 (Client Modifications):
+
+• Modify the client side:
+
+1. Add a new ‘login id’ command line argument to the client. This should be
+   the first argument, before the host name and port, because the host name
+   and port are optional in the sense that if they are omitted, defaults are
+   used. The login id should be mandatory; the client should immediately
+   quit if it is not provided. (login id should be stored in an instance variable
+   in ChatClient).
+2. Whenever a client connects to a server, it should automatically send the
+   message ‘#login <loginid>’ to the server.
+
+### Tasks - Phase 2 (Server Modifications):
+
+• Modify the server side: Arrange for the server to receive the #login <loginid>
+command from the client. It should behave according to the following rules:
+
+1. The #login commend should be recognized by the server.
+   (modify handleMessageFromClient).
+   3
+2. The login id should be saved, so that the server can always identify the
+   client. (use the setInfo method to set the login id and the getInfo
+   method to retrieve it again later).
+3. Each message echoed by the server should be prefixed by the login id of
+   the client that sent the message.
+4. The #login command should only be allowed as the first command re-
+   ceived after a client connect. If #login is received at any other time, the
+   server should send an error message back to the client.
+5. If the #login command is not received as the first command, then the
+   server should send an error message back to the client and terminate the
+   client’s connection. (use the method close in ConnectionToClient).
+   • Test your system and record the test results.
