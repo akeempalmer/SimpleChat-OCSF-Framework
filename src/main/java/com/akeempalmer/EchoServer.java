@@ -58,12 +58,17 @@ public class EchoServer extends AbstractServer implements ChatIF {
      * @param client The connection from which the message originated.
      */
     public void handleMessageFromClient(Object msg, ConnectionToClient client) {
+
+        // Handling the #login command sent from client.
         if (msg.toString().trim().equals("#login")) {
             System.out.println("Client sending a login command");
+            String clientID = msg.toString().replaceFirst("#", "");
+            client.setInfo("loginID", msg.toString());
+
+            System.out.println("Client ID stored is " + client.getInfo("loginID"));
         }
 
         System.out.println("Message received: " + msg + " from " + client);
-
         this.sendToAllClients(msg);
     }
 
