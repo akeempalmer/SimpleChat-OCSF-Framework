@@ -63,11 +63,13 @@ public class EchoServer extends AbstractServer implements ChatIF {
         if (msg.toString().trim().contains("#login")) {
             String clientID = msg.toString().replaceFirst("#login", "").trim();
             client.setInfo("loginID", clientID);
-
-            System.out.println("Client ID stored is " + client.getInfo("loginID"));
         }
+
         System.out.println("Message received: " + msg + " from " + client);
-        this.sendToAllClients(msg);
+        
+        // Transformed the message to contain the clientID of the sender.
+        String message = String.format("%s: %s", client.getInfo("loginID"), msg);
+        this.sendToAllClients(message);
     }
 
     /**
