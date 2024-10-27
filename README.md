@@ -88,3 +88,7 @@ command from the client. It should behave according to the following rules:
    server should send an error message back to the client and terminate the
    client’s connection. (use the method close in ConnectionToClient).
    • Test your system and record the test results.
+
+### Phase 2 Results
+
+![Screenshot of results](./Phase2-Results.png)
