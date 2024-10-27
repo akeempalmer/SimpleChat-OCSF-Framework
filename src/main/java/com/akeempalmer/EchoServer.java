@@ -60,17 +60,6 @@ public class EchoServer extends AbstractServer implements ChatIF {
     public void handleMessageFromClient(Object msg, ConnectionToClient client) {
 
         Object loginID = client.getInfo("loginID");
-        // If client sends a message and not currently logged in terminate the connection.
-        if (msg != null && loginID == null) {
-            try {
-                client.sendToClient("Server Msg> Error: Client must first login to send a message. Quiting...");
-                client.close();
-                return;
-            } catch (IOException error) {
-                System.out.println(error);
-                return;
-            }
-        }
 
         // Handling the #login command sent from client.
         if (msg.toString().trim().contains("#login")) {
@@ -89,6 +78,18 @@ public class EchoServer extends AbstractServer implements ChatIF {
 
             client.setInfo("loginID", clientID);
         } else {
+            // If client sends a message and not currently logged in terminate the connection.
+            if (msg != null && loginID == null) {
+                try {
+                    client.sendToClient("Server Msg> Error: Client must first login to send a message. Quiting...");
+                    client.close();
+                    return;
+                } catch (IOException error) {
+                    System.out.println(error);
+                    return;
+                }
+            }
+
             // Transformed the message to contain the clientID of the sender.
             String message = String.format("%s: %s", client.getInfo("loginID"), msg);
             this.sendToAllClients(message);
