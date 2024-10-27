@@ -62,14 +62,27 @@ public class EchoServer extends AbstractServer implements ChatIF {
         // Handling the #login command sent from client.
         if (msg.toString().trim().contains("#login")) {
             String clientID = msg.toString().replaceFirst("#login", "").trim();
+
+            // Check to see if client as already logged in.
+            Object loginID = client.getInfo("loginID");
+            if (loginID != null) {
+                try {
+                    client.sendToClient("Server Msg> Error: This user is already logged in.");
+                    return;
+                } catch (IOException error) {
+                    System.out.println(error);
+                    return;
+                }
+            }
+
             client.setInfo("loginID", clientID);
+        } else {
+            // Transformed the message to contain the clientID of the sender.
+            String message = String.format("%s: %s", client.getInfo("loginID"), msg);
+            this.sendToAllClients(message);
         }
 
         System.out.println("Message received: " + msg + " from " + client);
-        
-        // Transformed the message to contain the clientID of the sender.
-        String message = String.format("%s: %s", client.getInfo("loginID"), msg);
-        this.sendToAllClients(message);
     }
 
     /**
