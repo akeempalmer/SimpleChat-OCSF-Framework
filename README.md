@@ -92,3 +92,18 @@ command from the client. It should behave according to the following rules:
 ### Phase 2 Results
 
 ![Screenshot of results](./Phase2-Results.png)
+
+### Tasks - Phase 3 (Client/Server modification)
+
+• Modify the SimpleChat system so that it uses the Observable layer of the OCSF. Note that when you use Observable
+pattern in this application, you also need to use the Adaptable pattern.
+
+• You need to modify both server and client referring the figure below (see Figure 6.15 page 248 of the text book in
+details).
+
+• ObservableClient, ObservableServer, AdaptableClient, AdaptableServr are already included in the OCFS package. So you
+don’t need to develop these classes.
+
+### Phase 3 Results
+
+Completed.

@@ -16,7 +16,8 @@ import java.io.*;
  * @author Fran&ccedil;ois B&eacute;langer
  * @version July 2000
  */
-public class ChatClient extends AbstractClient {
+//public class ChatClient extends AbstractClient {
+public class ChatClient extends ObservableClient {
     // Instance variables **********************************************
 
     /**
@@ -101,7 +102,7 @@ public class ChatClient extends AbstractClient {
                     setPort(Integer.parseInt(commandArg));
                     break;
                 case "login":
-                    login();
+                    this.login();
                     break;
                 case "gethost":
                     String host = getHost();

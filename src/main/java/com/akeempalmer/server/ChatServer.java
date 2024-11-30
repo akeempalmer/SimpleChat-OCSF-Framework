@@ -5,8 +5,9 @@ import com.akeempalmer.common.ChatIF;
 
 import java.io.IOException;
 
-public class ChatServer extends AbstractServer {
+//public class ChatServer extends AbstractServer {
 
+public class ChatServer extends ObservableServer {
     /**
      * The interface type variable. It allows the implementation of
      * the display method in the server.
@@ -20,7 +21,7 @@ public class ChatServer extends AbstractServer {
      * @param port     The port number to connect on.
      * @param server The interface type variable.
      */
-    public ChatServer( int port, EchoServer server)
+    public ChatServer(int port, EchoServer server)
             throws IOException {
         super(port); // Call the superclass constructor
         this.server = server;
@@ -74,10 +75,10 @@ public class ChatServer extends AbstractServer {
         System.exit(0);
     }
 
-    @Override
-    protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
-
-    }
+//    @Override
+//    protected void handleMessageFromClient(Object msg, ConnectionToClient client) {
+//
+//    }
 
 
 }

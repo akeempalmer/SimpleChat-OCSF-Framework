@@ -163,4 +163,22 @@ public class ObservableClient extends Observable {
     notifyObservers(CONNECTION_ESTABLISHED);
   }
 
+  protected void logout() throws IOException {
+    try {
+      service.logout();
+    } catch (IOException error) {
+      System.out.println("An error occurred when logging out " + error);
+
+    }
+  }
+
+  protected void login() throws IOException {
+    try {
+      service.login();
+    } catch (IOException error) {
+      System.out.println("An error occurred when logging out " + error);
+
+    }
+  }
+
 }
